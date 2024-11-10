@@ -9,8 +9,14 @@ RUN apk add busybox=1.35.0-r18 && \
     apk add curl=8.5.0-r0 && \
     apk add gettext=0.21-r2 && \
     apk add grep=3.7-r0 && \
-    apk add docker=20.10.20-r0 && \
     rm -rf /var/cache/apk/*
+
+# Install docker
+RUN apk add docker=20.10.20-r0 && \
+    rm -rf /var/cache/apk/*
+
+RUN rm /etc/docker/daemon.json && \
+    echo '{ "storage-driver": "vfs" }' > /etc/docker/daemon.json
 
 # Install Jq
 ARG JQ_VERSION="1.7.1"

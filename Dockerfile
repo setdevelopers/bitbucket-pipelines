@@ -12,11 +12,9 @@ RUN apk add busybox=1.35.0-r18 && \
     rm -rf /var/cache/apk/*
 
 # Install docker
-RUN apk add docker=20.10.20-r0 && \
+RUN apk add iptables=1.8.8-r1 && \
+    apk add docker=20.10.20-r0 && \
     rm -rf /var/cache/apk/*
-
-RUN rm /etc/docker/daemon.json && \
-    echo '{ "storage-driver": "vfs" }' > /etc/docker/daemon.json
 
 # Install Jq
 ARG JQ_VERSION="1.7.1"
